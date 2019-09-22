@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wj.dao.PrivDao">
+	<cache/>
+	<select id="selPrivByAid" resultType="Priv">
+		select pid,pclass,purl,name from tc_priv where pid in(select pid from tc_role_priv where rid in(select rid from tc_admin_role where aid=#{aid}))
+	</select>
+	<select id="selPrivByRid" resultType="Priv">
+	select pid,pclass,purl,name,state from tc_priv where pid in(select pid from tc_role_priv where rid=#{rid}) and state=0
+	</select>
+	<select id="selAllPrivs" resultType="Priv">
+	select pid,pclass,purl,name,state from tc_priv
+	</select>
+</mapper>

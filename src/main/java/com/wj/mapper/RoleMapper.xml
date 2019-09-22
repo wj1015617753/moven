@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wj.dao.RoleDao">
+	<select id="selRoleById" resultType="Role">
+	select * from tc_role where rid=#{rid}"
+	</select>
+	<select id="selAllRole" resultType="Role">
+	select * from tc_role
+	</select>
+	<select id="selRnameByAid" resultType="Role">
+	select * from tc_role where rid in(select rid from tc_admin_role where aid = #{aid} )
+	</select>
+	<select id="selRoleByRid" resultType="Role">
+	select * from tc_role where rid=#{rid}
+	</select>
+	<update id="updateRl" parameterType="Role">
+	update tc_role set rname=#{rname} where rid=#{rid}
+	</update>
+	<update id="updateRoleByRid" parameterType="Role">
+	update tc_role set rname=#{rname} where rid=#{rid}
+	</update>
+	<insert id="addRole" keyProperty="rid" keyColumn="rid" useGeneratedKeys="true">
+	insert into tc_role(rname) values(#{rname})
+	</insert>
+	<insert id="addRolePrivs" parameterType="Role">
+	insert into tc_role_priv(rid,pid) values (#{rid},#{pid})
+	</insert>
+	<insert id="insertRoPr" parameterType="Role">
+	insert into tc_role_priv(rid,pid) values (#{rid},#{pid})
+	</insert> 
+	<delete id="deleteRoles" parameterType="Role">
+	delete from tc_role where rid =#{rid}
+	</delete>
+	<delete id="deleteRlPriv" parameterType="Role">
+	delete from tc_role_priv where rid=#{rid}
+	</delete>
+	<delete id="delRoPrByRid" parameterType="Role">
+	delete from tc_role_priv where rid=#{rid}
+	</delete>
+ 	
+</mapper>

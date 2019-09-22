@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wj.entity.Admin;
 import com.wj.service.AdminService;
-
+//this is a first modify！
 @Controller
 public class AdminController {
 	
